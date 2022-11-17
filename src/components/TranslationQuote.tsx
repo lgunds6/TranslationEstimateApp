@@ -244,11 +244,12 @@ function TranslationQuote(
 
   const handleDownload = () => {
     const content = pdfRef.current;
+    let momentDate = moment(date, "DD-MM-YYYY").format("DD-MM-YYYY");
 
     const doc = new jsPDF();
     doc.html(content, {
       callback: function (doc) {
-        doc.save(clientName + "-" + date + "estimate.pdf");
+        doc.save(clientName + "-" + momentDate + "estimate.pdf");
       },
       html2canvas: { scale: 0.23 },
     });
