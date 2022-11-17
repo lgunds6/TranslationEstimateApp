@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useCallback, createContext } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { Theme, useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-
+// @ts-ignore
+import TranslationQuote from "./TranslationQuote.tsx";
+// @ts-ignore
+import { ifTickedContext } from "./TranslationQuote.tsx";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import Chip from "@mui/material/Chip";
@@ -45,8 +48,9 @@ function getStyles(name: string, personName: readonly string[], theme: Theme) {
   };
 }
 
-export default function CustomSelect(props) {
+export default function CustomSelect(props, { ticked, updateTick, setTicked }) {
   const theme = useTheme();
+
   // @ts-ignore
   const [personName, setPersonName] = useState<string[]>([]);
   const [languageNumber, setLanguageNumber] = useState<number>();
@@ -70,7 +74,14 @@ export default function CustomSelect(props) {
       setLanguageNumber(x);
 
       props.onChange(x);
-      console.log("coming from comp", x);
+    }
+  });
+
+  useEffect(() => {
+    if (props.ticked === true) {
+      setPersonName([]);
+      props.updateTick(false);
+      console.log("I can see the value");
     }
   });
 

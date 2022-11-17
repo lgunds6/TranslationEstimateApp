@@ -7,9 +7,19 @@ import moment from "moment";
 import "react-datepicker/dist/react-datepicker.css";
 import { jsPDF } from "jspdf";
 import "../styles/TransQuote.scss";
+import { useUpdateUserContext } from "./UserContext.js";
+import { useUserContext } from "./UserContext.js";
+import App from "../App.js";
 
-function TranslationQuote(personName, props) {
+function TranslationQuote(
+  { ticked, updateTick, setTicked },
+  personName,
+  setPersonName,
+  props
+) {
   const pdfRef = useRef(null);
+  const formRef = useRef(null);
+
   // Data States
   const [subjectData, setSubjectData] = useState([]);
   const [subject, setSubject] = useState("");
@@ -64,7 +74,6 @@ function TranslationQuote(personName, props) {
     });
     const data = await response.json();
     setSubjectData(data);
-    console.log(subjectData);
   }, []);
 
   useEffect(() => {
@@ -85,7 +94,6 @@ function TranslationQuote(personName, props) {
   const handleLanguageChange = (data) => {
     let x = data;
     setTotalLanguages(x);
-    console.log("coming from CustomSelect.tsx", x);
   };
 
   //*** End */
@@ -106,7 +114,6 @@ function TranslationQuote(personName, props) {
         setWordTime(Math.trunc(x));
       }
     }
-    console.log("wordTime", wordTime);
   });
 
   //*** End */
@@ -136,7 +143,6 @@ function TranslationQuote(personName, props) {
     } else {
       setExtraTypeTime(0);
     }
-    console.log("typeTime", extraTypeTime);
   });
 
   //*** End */
@@ -149,7 +155,6 @@ function TranslationQuote(personName, props) {
     } else {
       setQaTicked(false);
     }
-    console.log("Qatime", timeWithQA);
   }
   useEffect(() => {
     if (qaTicked === true) {
@@ -185,7 +190,7 @@ function TranslationQuote(personName, props) {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    let btn = document.getElementById("btn");
+
     if (totalWords) {
       if (btn.innerText == "Get estimate") {
         btn.innerText = "Update";
@@ -243,20 +248,46 @@ function TranslationQuote(personName, props) {
     const doc = new jsPDF();
     doc.html(content, {
       callback: function (doc) {
-        doc.save(clientName + "-" + "estimate.pdf");
+        doc.save(clientName + "-" + date + "estimate.pdf");
       },
       html2canvas: { scale: 0.23 },
     });
-    console.log(clientName);
   };
 
   //*** End */
+
+  function handleSubmit2() {
+    // window.location.reload(false);
+    setTotalWords(0);
+    setClientName("");
+    setDescription("");
+    setTypeSettingChecked(false);
+    setTotalTypePages(0);
+    setDate(new Date());
+    if (totalWords) {
+      if (btn.innerText == "Update") {
+        btn.innerText = "Get estimate";
+      }
+    }
+
+    setEstimate(false);
+    if (ticked === false) {
+      updateTick(true);
+
+      console.log("hi", ticked);
+    }
+  }
 
   return (
     <>
       <div className="bodyContainer">
         <h1 className="headerStyles"> Get an estimated delivery timeframe</h1>
-        <form className="formContainer" onSubmit={handleOnSubmit} id="myform">
+        <form
+          name="myForm"
+          className="formContainer"
+          onSubmit={handleOnSubmit}
+          id="myform"
+        >
           <h2 className="formHeader"> Project requirements</h2>
           <div className="formRowOne">
             <div className="clientName">
@@ -272,6 +303,8 @@ function TranslationQuote(personName, props) {
                 Translate into ({totalLanguages})
               </label>
               <CustomSelect
+                ticked={ticked}
+                updateTick={updateTick}
                 className="languageCount"
                 onChange={handleLanguageChange}
               />
@@ -340,11 +373,19 @@ function TranslationQuote(personName, props) {
           </div>
 
           <div className="buttonStyles">
-            <button id="btn" value="Get estimate" type="submit">
+            <button id="btn" name="btn1" value="Get estimate" type="submit">
               {" "}
               Get estimate
             </button>
           </div>
+          {estimate === true && (
+            <div className="buttonStylesReset">
+              <button type="button" onClick={handleSubmit2}>
+                {" "}
+                Reset
+              </button>
+            </div>
+          )}
           {estimate === true && (
             <>
               <div ref={pdfRef}>
@@ -404,7 +445,7 @@ function TranslationQuote(personName, props) {
                 </div>
               </div>
               <button className="btnDownload" onClick={handleDownload}>
-                Download pdf
+                Download
               </button>
             </>
           )}
