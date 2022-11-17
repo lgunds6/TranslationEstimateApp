@@ -259,29 +259,29 @@ function TranslationQuote(
 
   function handleSubmit2() {
     // window.location.reload(false);
-    setTotalWords(0);
-    setClientName("");
-    setDescription("");
-    setTypeSettingChecked(false);
-    setTotalTypePages(0);
-    setFinalWord(0);
-    setFinalQA(0);
-    setFinalType(0);
-    setFinalQuote(0);
+    // setTotalWords(0);
+    // setClientName("");
+    // setDescription("");
+    // setTypeSettingChecked(false);
+    // setTotalTypePages(0);
+    // setFinalWord(0);
+    // setFinalQA(0);
+    // setFinalType(0);
+    // setFinalQuote(0);
     window.location.reload(false);
-    setDate(new Date());
-    if (totalWords) {
-      if (btn.innerText == "Update") {
-        btn.innerText = "Get estimate";
-      }
-    }
+    // setDate(new Date());
+    // if (totalWords) {
+    //   if (btn.innerText == "Update") {
+    //     btn.innerText = "Get estimate";
+    //   }
+    // }
 
-    setEstimate(false);
-    if (ticked === false) {
-      updateTick(true);
+    // setEstimate(false);
+    // if (ticked === false) {
+    //   updateTick(true);
 
-      console.log("hi", ticked);
-    }
+    //   console.log("hi", ticked);
+    // }
   }
 
   return (
