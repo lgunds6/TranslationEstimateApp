@@ -264,6 +264,11 @@ function TranslationQuote(
     setDescription("");
     setTypeSettingChecked(false);
     setTotalTypePages(0);
+    setFinalWord(0);
+    setFinalQA(0);
+    setFinalType(0);
+    setFinalQuote(0);
+    window.location.reload(false);
     setDate(new Date());
     if (totalWords) {
       if (btn.innerText == "Update") {
@@ -432,7 +437,7 @@ function TranslationQuote(
                     </>
                   )}
 
-                  {finalQuote && (
+                  {finalQuote !== 0 && (
                     <>
                       <p className="totalStyle"> Total delivery time: </p>
                       <p className="totalStyleTwo"> {finalQuote} Days </p>
