@@ -88,7 +88,7 @@ export default function CustomSelect(props, { ticked, updateTick, setTicked }) {
   return (
     <div>
       <FormControl
-        sx={{ s: 1, width: 363, backgroundColor: "white" }}
+        sx={{ s: 1, width: 380, backgroundColor: "white" }}
         size="small"
       >
         <InputLabel sx={{ padding: 5 }}></InputLabel>
