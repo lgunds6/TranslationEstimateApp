@@ -9,8 +9,8 @@
     visibility: hidden;
 }
 .MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline{
-    >legend{
-        display: none;
+    legend{
+        display: none !important;
     }
     
 }
@@ -20,3 +20,7 @@
     background-color: white;
     border-color: #80808057 1px solid;
 }
+
+
+
+

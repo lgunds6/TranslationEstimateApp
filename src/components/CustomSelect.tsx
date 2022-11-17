@@ -91,7 +91,7 @@ export default function CustomSelect(props, { ticked, updateTick, setTicked }) {
         sx={{ s: 1, width: 380, backgroundColor: "white" }}
         size="small"
       >
-        <InputLabel sx={{ padding: 5 }}></InputLabel>
+        <InputLabel></InputLabel>
         <Select
           labelId="demo-multiple-chip-label"
           id="demo-multiple-chip"
