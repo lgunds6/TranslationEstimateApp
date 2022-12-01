@@ -12,6 +12,9 @@ import Checkers from "./Checkers.js";
 import TranslationQuote from "./components/TranslationQuote.tsx";
 import CustomSelect from "./components/CustomSelect.tsx";
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./styles/App.scss";
+
 function App(props) {
   const [ticked, setTicked] = useState(false);
   const updateTick = (newTick) => {
@@ -19,14 +22,11 @@ function App(props) {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <TranslationQuote
-          updateTick={updateTick}
-          ticked={ticked}
-        ></TranslationQuote>
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <TranslationQuote />
+      </div>
+    </>
   );
 }
 
