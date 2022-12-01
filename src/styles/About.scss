@@ -1,0 +1,69 @@
+ // Image  styles //
+
+ .imageContainer{
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    
+  }
+
+  .gallery__img {
+    width: 25%;
+    height: 25%;
+    object-fit: cover;
+}
+
+.travelInfo{
+    width: 25%;
+    height: 25%;
+    object-fit: cover;
+    font-family: "Roboto Slab", sans-serif;
+    color: white;
+    text-align: center;
+    margin: auto;
+}
+
+.summaryContainer{
+   
+}
+
+
+body{
+    font-family: "Roboto Slab", sans-serif;
+}
+.pageContainer{
+    max-width:100vw;
+    max-height:100vh;
+   
+}
+
+  h3{
+    font-family: "Roboto Slab", sans-serif;
+    color: white;
+  }
+
+  .introStyle{
+display: flex;
+flex-direction: column;
+justify-content: center;
+justify-items: center;
+align-items: center;
+align-content: center;
+  }
+  .introStyleSummary{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+      }
+
+      .summaryStyles{
+        font-family: "Roboto Slab", sans-serif;
+    color: white;
+    display: flex;
+    
+    margin-left: 50px;
+    margin-right: 50px;
+      }
